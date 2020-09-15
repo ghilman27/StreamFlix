@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '64px',
+        minHeight: theme.spacing(16),
         background: theme.palette.primary.main
     },
 }));
