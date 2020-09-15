@@ -1,11 +1,15 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import { NavBar, Footer } from './components';
+import { Paper } from '@material-ui/core';
 
-function App() {
-  return (
-    <Fragment>
-      <div>Hello World!</div>
-    </Fragment>
-  );
-}
+const App = () => {
+	return (
+		<Paper>
+			<NavBar />
+			<div>Hello World!</div>
+			<Footer />
+		</Paper>
+	);
+};
 
 export default App;
