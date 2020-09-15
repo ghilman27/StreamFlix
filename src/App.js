@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavBar, Footer } from './components';
+import { HomeView } from './views';
 import { Paper } from '@material-ui/core';
 
-const App = () => {
+const App = (props) => {
 	return (
 		<Paper>
 			<NavBar />
-			<div>Hello World!</div>
+			<HomeView />
 			<Footer />
 		</Paper>
 	);
