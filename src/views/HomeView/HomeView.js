@@ -1,30 +1,36 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import useStyles from './HomeView.styles';
 import { Grid, Typography } from '@material-ui/core';
 import { MovieBanner, MovieCard } from '../../components';
+import { fetchNowPlaying } from '../../api';
+import { Link, useLocation, useHistory, useParams } from 'react-router-dom';
+import { createSlug } from '../../utils/utils';
+import Pagination from '@material-ui/lab/Pagination';
 
-const movie = {
-	title: 'The Avengers',
-	director: 'chris evans',
-	price: '21,250',
-	duration: 120,
-	genre: 'Action',
-	description: 'nick fury is compelled to launch the avengers initiative when loki poses a threat to planet earth. his squad of superheroes put their minds together to accomplish the task.',
-	image: 'https://image.tmdb.org/t/p/original/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg',
-	saved: false,
-	rating: 7.6,
-}
-
-const movies = [movie, movie, movie, movie, movie, movie];
 
 const HomeView = () => {
-	const styles = useStyles();
+	const location = useLocation();
+	const history = useHistory();
 
+	const styles = useStyles();
+	const [movies, setMovies] = useState();
+	const [page, setPage] = useState(location.search.split('?page=')[1]);
+
+	useEffect(() => {
+		fetchNowPlaying(page).then((movies) => setMovies(movies));
+	}, [page])
+
+	const handlePageChange = (event, page) => {
+		history.push(`/?page=${page}`)
+		setPage(page)
+	}
+
+	if (!movies) return <div>Loading...</div>;
 	return (
 		<Fragment>
 			<MovieBanner 
-				movie={movie}
-				height='60vh'
+				movie={movies[Math.floor(Math.random() * movies.length)]}
+				height='75vh'
 			/>
 			<Grid container spacing={2} className={styles.movieList}>
 				<Grid item xs={12}>
@@ -41,12 +47,20 @@ const HomeView = () => {
 					justify="center"
 					spacing={2}>
 					{movies.map(movie => (
-					<Grid key={movie._id} item className={styles.fullWidth}>
-						<MovieCard movie={movie} />
+					<Grid key={movie.id} item className={styles.fullWidth}>
+						<Link 
+							to={`/${movie.id}-${createSlug(movie.original_title)}`}
+							style={{textDecoration: 'none'}}
+						>
+							<MovieCard movie={movie} />
+						</Link>
 					</Grid>
 					))}
 				</Grid>
 			</Grid>
+			<div className={styles.pagination}>
+				<Pagination page={parseInt(page)} count={129} color="secondary" onChange={handlePageChange} />
+			</div>
 		</Fragment>
 	);
 };

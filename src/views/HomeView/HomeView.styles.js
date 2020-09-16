@@ -10,12 +10,19 @@ export default makeStyles((theme) => ({
 		background: theme.palette.background.paper,
 	},
 	title: {
-		fontSize: '3rem',
+		fontSize: '2rem',
 		lineHeight: '3rem',
 		textAlign: 'center',
 		textTransform: 'capitalize',
 		marginBottom: theme.spacing(3)
 	  },
+	pagination: {
+		display:'flex',
+		flexDirection: 'row',
+		justifyContent: 'center',
+		paddingTop: theme.spacing(8),
+		paddingBottom: theme.spacing(8),
+	},
 	[theme.breakpoints.down('sm')]: {
 		fullWidth: { width: '100%' }
 	}
