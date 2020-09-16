@@ -3,18 +3,27 @@ import useStyles from './HomeView.styles';
 import { Grid, Typography } from '@material-ui/core';
 import { MovieBanner, MovieCard } from '../../components';
 import { fetchNowPlaying } from '../../api';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory, useParams } from 'react-router-dom';
 import { createSlug } from '../../utils/utils';
+import Pagination from '@material-ui/lab/Pagination';
 
 
 const HomeView = () => {
+	const location = useLocation();
+	const history = useHistory();
+
 	const styles = useStyles();
 	const [movies, setMovies] = useState();
-	const page = 1;
+	const [page, setPage] = useState(location.search.split('?page=')[1]);
 
 	useEffect(() => {
 		fetchNowPlaying(page).then((movies) => setMovies(movies));
-	}, [])
+	}, [page])
+
+	const handlePageChange = (event, page) => {
+		history.push(`/?page=${page}`)
+		setPage(page)
+	}
 
 	if (!movies) return <div>Loading...</div>;
 	return (
@@ -49,6 +58,9 @@ const HomeView = () => {
 					))}
 				</Grid>
 			</Grid>
+			<div className={styles.pagination}>
+				<Pagination page={parseInt(page)} count={129} color="secondary" onChange={handlePageChange} />
+			</div>
 		</Fragment>
 	);
 };

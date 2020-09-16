@@ -16,6 +16,13 @@ export default makeStyles((theme) => ({
 		textTransform: 'capitalize',
 		marginBottom: theme.spacing(3)
 	  },
+	pagination: {
+		display:'flex',
+		flexDirection: 'row',
+		justifyContent: 'center',
+		paddingTop: theme.spacing(8),
+		paddingBottom: theme.spacing(8),
+	},
 	[theme.breakpoints.down('sm')]: {
 		fullWidth: { width: '100%' }
 	}
