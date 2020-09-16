@@ -35,26 +35,6 @@ const MovieBanner = (props) => {
 			{fullDescription && (
 				<div className={styles.infoSection}>
 					<header className={styles.movieHeader}>
-					{fullDescription && (
-						<Box mb={3} display="flex" alignItems="center" flexWrap="wrap">
-						{movie.genres.map((genre) => (
-							<Typography
-							key={`${genre.id}`}
-							className={styles.tag}
-							variant="body1"
-							color="inherit">
-							{genre.name}
-							</Typography>
-						))}
-							<Rating 
-								name="read-only" 
-								value={movie.vote_average} 
-								max={10} 
-								size='small'
-								readOnly 
-							/>
-						</Box>
-					)}
 					<Typography
 						className={styles.movieTitle}
 						variant="h1"
@@ -67,6 +47,28 @@ const MovieBanner = (props) => {
 						color="inherit">
 						{textTruncate(movie.overview, 450)}
 					</Typography>
+					{fullDescription && (
+						<Box display="flex" alignItems="center" flexWrap="wrap">
+							{movie.genres.map((genre) => (
+								<Typography
+								key={`${genre.id}`}
+								className={styles.tag}
+								variant="body1"
+								color="inherit">
+								{genre.name}
+								</Typography>
+							))}
+						</Box>
+					)}
+					<Box mt={3} display="flex" alignItems="center" flexWrap="wrap">
+						<Rating 
+							name="read-only" 
+							value={movie.vote_average} 
+							max={10} 
+							size='small'
+							readOnly 
+						/>
+					</Box>
 					<Typography className={styles.voteCount} variant="h4" color="inherit">
 						{movie.vote_count.toLocaleString()} people liked this
 					</Typography>

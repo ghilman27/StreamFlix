@@ -4,6 +4,7 @@ export default makeStyles((theme) => ({
 	root: {
 		display: 'flex',
 		flexWrap: 'wrap',
+		flexDirection: 'column',
 		justifyContent: 'space-around',
 		overflow: 'hidden',
 		marginTop: theme.spacing(4),
@@ -18,6 +19,7 @@ export default makeStyles((theme) => ({
 			'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
 	},
 	sectionTitle: {
-		padding: theme.spacing(2)
+		paddingTop: theme.spacing(2),
+		paddingBottom: theme.spacing(2)
 	},	
 }));

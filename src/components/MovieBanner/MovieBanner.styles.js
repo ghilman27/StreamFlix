@@ -20,7 +20,6 @@ export default makeStyles((theme) => ({
 
 	}),
 	infoSection: {
-		// position: 'relative',
 		padding: theme.spacing(3),
 		display: 'flex',
 		alignItems: 'center',
@@ -29,7 +28,6 @@ export default makeStyles((theme) => ({
 		backgroundBlendMode: 'multiply',
 		background:
 			'linear-gradient(to right, rgba(0,0,0,.9) 25%, transparent 100%)',
-		// zIndex: 2,
 	},
 	movieHeader: {
 		position: 'relative',
@@ -41,6 +39,7 @@ export default makeStyles((theme) => ({
 		marginRight: theme.spacing(1),
 		border: '1px solid rgba(255,255,255,0.9)',
 		borderRadius: 25,
+		fontSize: theme.typography.caption.fontSize
 	},
 	movieTitle: {
 		maxWidth: '60%',
@@ -74,7 +73,7 @@ export default makeStyles((theme) => ({
 		border: '1px solid rgba(255,255,255,0.13)',
 	},
 	notSaved: {
-		marginLeft: theme.spacing(1),
+		marginLeft: theme.spacing(2),
 		background: theme.palette.secondary.main,
 		color: theme.palette.secondary.contrastText,
 		fontWeight: theme.typography.fontWeightBold,

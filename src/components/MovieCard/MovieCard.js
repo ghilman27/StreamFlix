@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Typography, Box, ButtonBase } from '@material-ui/core';
+import { Paper, Typography, Box, ButtonBase, useMediaQuery } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import useStyles from './MovieCard.styles';
 import { textTruncate } from '../../utils/utils';
@@ -14,11 +14,12 @@ const IMAGE_BASE_URL = process.env.REACT_APP_API_IMAGE_BASE_URL;
 const MovieCard = (props) => {
 	const savedMovies = useSelector((state) => state.savedMovies);
 	const styles = useStyles();
+	const smallScreen = useMediaQuery(theme => theme.breakpoints.down('sm'));
 	const { movie } = props;
 	let isThisMovieSaved = savedMovies[movie.id];
 
 	return (
-		<ButtonBase style={{textAlign: 'unset'}} component='a'>
+		<ButtonBase style={{textAlign: 'unset'}}>
 			<Paper className={styles.movieCard} elevation={20}>
 				<div className={styles.infoSection}>
 					<div className={styles.movieHeader}>
@@ -61,10 +62,10 @@ const MovieCard = (props) => {
 					<div className={styles.description}>
 						<Typography
 							className={styles.descriptionText}
-							variant='body1'
+							variant={smallScreen ? 'body2' : 'body1'}
 							color='inherit'
 						>
-							{textTruncate(movie.overview, 250)}
+							{textTruncate(movie.overview, smallScreen ? 175 : 250)}
 						</Typography>
 					</div>
 				</div>

@@ -3,6 +3,8 @@ import useStyles from './HomeView.styles';
 import { Grid, Typography } from '@material-ui/core';
 import { MovieBanner, MovieCard } from '../../components';
 import { fetchNowPlaying } from '../../api';
+import { Link } from 'react-router-dom';
+import { createSlug } from '../../utils/utils';
 
 
 const HomeView = () => {
@@ -19,7 +21,7 @@ const HomeView = () => {
 		<Fragment>
 			<MovieBanner 
 				movie={movies[Math.floor(Math.random() * movies.length)]}
-				height='60vh'
+				height='75vh'
 			/>
 			<Grid container spacing={2} className={styles.movieList}>
 				<Grid item xs={12}>
@@ -37,7 +39,12 @@ const HomeView = () => {
 					spacing={2}>
 					{movies.map(movie => (
 					<Grid key={movie.id} item className={styles.fullWidth}>
-						<MovieCard movie={movie} />
+						<Link 
+							to={`/${movie.id}-${createSlug(movie.original_title)}`}
+							style={{textDecoration: 'none'}}
+						>
+							<MovieCard movie={movie} />
+						</Link>
 					</Grid>
 					))}
 				</Grid>

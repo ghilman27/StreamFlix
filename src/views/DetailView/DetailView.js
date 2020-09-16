@@ -9,9 +9,12 @@ import {
 	fetchMovieCasts,
 } from '../../api';
 
-const DetailView = () => {
-	const id = 24428;
-	const page = 1;
+
+// Only run 1 page of api requests to similar and recommended movies
+const PAGE = 1; 
+
+const DetailView = (props) => {
+	const id = props.match.params.id;
 	const styles = useStyles();
 	const [movie, setMovie] = useState();
 	const [casts, setCasts] = useState();
@@ -20,12 +23,12 @@ const DetailView = () => {
 
 	useEffect(() => {
 		fetchMovieDetail(id).then((movie) => setMovie(movie));
-		fetchSimilarMovies(id, page).then((similar) => setSimilar(similar));
-		fetchRecommendedMovies(id, page).then((recommended) =>
+		fetchSimilarMovies(id, PAGE).then((similar) => setSimilar(similar));
+		fetchRecommendedMovies(id, PAGE).then((recommended) =>
 			setRecommended(recommended)
 		);
 		fetchMovieCasts(id).then((casts) => setCasts(casts));
-	}, []);
+	}, [id]);
 
 	if (!movie || !similar || !recommended || !casts) {
 		return <div>Loading .... </div>;
@@ -33,10 +36,12 @@ const DetailView = () => {
 
 	return (
 		<Paper className={styles.root}>
-			<MovieBanner movie={movie} height='65vh' fullDescription />
-			<SectionList sectionTitle='Top Casts' height={250} data={casts} />
-			<SectionList sectionTitle='Similar Movies' height={250} data={similar} />
-			<SectionList sectionTitle='Recommended Movies' height={250} data={recommended} />
+			<MovieBanner movie={movie} height='100vh' fullDescription />
+			<Paper className={styles.sectionContainer}>
+				<SectionList sectionTitle='Top Casts' height={250} data={casts} />
+				<SectionList sectionTitle='Similar Movies' height={250} data={similar} />
+				<SectionList sectionTitle='Recommended Movies' height={250} data={recommended} />
+			</Paper>
 		</Paper>
 	);
 };

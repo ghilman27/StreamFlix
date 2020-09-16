@@ -10,7 +10,7 @@ export default makeStyles((theme) => ({
 		background: theme.palette.background.paper,
 	},
 	title: {
-		fontSize: '3rem',
+		fontSize: '2rem',
 		lineHeight: '3rem',
 		textAlign: 'center',
 		textTransform: 'capitalize',

@@ -20,3 +20,7 @@ export const dateFormatter = (dateObject) => {
   const dateStringAPIFormat = `${dateObject.getFullYear()}-${pad(dateObject.getMonth()+1)}-${pad(dateObject.getDate())}`;
   return dateStringAPIFormat;
 }
+
+export const createSlug = (name) => {
+  return name.toLowerCase().split(' ').join('-')
+}

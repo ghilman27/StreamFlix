@@ -4,15 +4,17 @@ require('dotenv').config();
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
+const MAX_RECOMMENDATION_SIZE = 16;
 
 /* 
 	I'm using discover API, because `now_playing` API only return like 4 values
 	(of course, it's PSBB)
+	&sort_by=primary_release_date.desc
 */
 export const fetchNowPlaying = async (page) => {
 	try {
 		const date = dateFormatter(new Date());
-		const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&region=ID&sort_by=primary_release_date.desc&primary_release_date.lte=${date}&page=${page}`;
+		const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&region=ID&primary_release_date.lte=${date}&page=${page}`;
 		const { data: { results: movies } } = await axios.get(url);
 		movies.forEach(movie => {
 			movie.price = !movie.vote_average 
@@ -53,7 +55,9 @@ export const fetchMovieDetail = async (id) => {
 export const fetchSimilarMovies = async (id, page) => {
 	try {
 		const url = `${BASE_URL}/movie/${id}/similar?api_key=${API_KEY}&page${page}`;
-		const { data: { results : movies } } = await axios.get(url);
+		let { data: { results : movies } } = await axios.get(url);
+
+		movies = movies.slice(MAX_RECOMMENDATION_SIZE);
 
 		return movies.map(({id, title, vote_count, poster_path}) => ({
 			id,
@@ -69,7 +73,9 @@ export const fetchSimilarMovies = async (id, page) => {
 export const fetchRecommendedMovies = async (id, page) => {
 	try {
 		const url = `${BASE_URL}/movie/${id}/recommendations?api_key=${API_KEY}&page${page}`;
-		const { data: { results : movies } } = await axios.get(url);
+		let { data: { results : movies } } = await axios.get(url);
+
+		movies = movies.slice(MAX_RECOMMENDATION_SIZE);
 
 		return movies.map(({id, title, vote_count, poster_path}) => ({
 			id,
@@ -85,7 +91,9 @@ export const fetchRecommendedMovies = async (id, page) => {
 export const fetchMovieCasts = async (id) => {
 	try {
 		const url = `${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`;
-		const { data: { cast : casts } } = await axios.get(url);
+		let { data: { cast : casts } } = await axios.get(url);
+
+		casts = casts.slice(MAX_RECOMMENDATION_SIZE);
 
 		return casts.map(({cast_id, name, character, profile_path}) => ({
 			id: cast_id,
