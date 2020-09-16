@@ -1,5 +1,16 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## BEFORE RUNNING THE APP
+1. Please kindly clone the repo
+2. Then cd to the streamflix app folder and type `yarn install` to install dependencies
+3. After that, kindly check `env.example` and rename it to `.env` with your api token information
+4. Everything setup! just type `yarn start` to run it in development server!
+
+
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
