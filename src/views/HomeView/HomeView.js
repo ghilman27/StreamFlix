@@ -3,7 +3,7 @@ import useStyles from './HomeView.styles';
 import { Grid, Typography } from '@material-ui/core';
 import { MovieBanner, MovieCard } from '../../components';
 import { fetchNowPlaying } from '../../api';
-import { Link, useLocation, useHistory, useParams } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { createSlug } from '../../utils/utils';
 import Pagination from '@material-ui/lab/Pagination';
 
@@ -21,8 +21,10 @@ const HomeView = () => {
 	}, [page])
 
 	const handlePageChange = (event, page) => {
-		history.push(`/?page=${page}`)
-		setPage(page)
+		if (!Number.isNaN(page)) {
+			history.push(`/?page=${page}`)
+			setPage(page)
+		}
 	}
 
 	if (!movies) return <div>Loading...</div>;
