@@ -4,10 +4,31 @@ import Rating from '@material-ui/lab/Rating';
 import useStyles from './MovieBanner.styles';
 import { textTruncate } from '../../utils/utils';
 import cx from 'classnames';
+import { useSelector, useDispatch } from 'react-redux';
+import { reduceBalance, saveMovie } from '../../store/actions';
 
 const MovieBanner = (props) => {
-	const { fullDescription, movie } = props;
+	const savedMovies = useSelector((state) => state.savedMovies);
+	let userBalance = useSelector((state) => state.userBalance);
+	const dispatch = useDispatch();
 	const styles = useStyles(props);
+	const { fullDescription, movie } = props;
+	let isThisMovieSaved = savedMovies[movie.id];
+
+	const handleBuyMovie = () => {
+		if (isThisMovieSaved) {
+			alert("You have purchased this movie");
+			return;
+		}
+		if (userBalance < movie.price) {
+			alert("You don't have sufficient balance for purchasing this movie");
+			return;
+		}
+
+		dispatch(saveMovie(movie.id));
+		dispatch(reduceBalance(movie.price));
+		isThisMovieSaved = true;
+	}
 
 	return (
 		<Paper className={styles.root}>
@@ -67,16 +88,16 @@ const MovieBanner = (props) => {
 							className={cx({
 								[styles.price]: true,
 								[styles.notSaved]: true,
-								[styles.saved]: movie.saved,
+								[styles.saved]: isThisMovieSaved,
 							})}
 							variant='body1'
 							color='inherit'
 						>
-						{movie.saved ? 'Saved' : `Not Saved`}
+						{isThisMovieSaved ? 'Saved' : `Not Saved`}
 					</Typography>
 					<br/>
-					<Button variant="contained" color="secondary" className={styles.button}>
-						Buy Tickets
+					<Button onClick={handleBuyMovie} variant="contained" color="secondary" className={styles.button}>
+						Buy Movie
 					</Button>
 					</header>
 				</div>

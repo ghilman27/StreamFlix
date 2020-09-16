@@ -4,13 +4,18 @@ import Rating from '@material-ui/lab/Rating';
 import useStyles from './MovieCard.styles';
 import { textTruncate } from '../../utils/utils';
 import cx from 'classnames';
+import { useSelector } from 'react-redux';
+
+
 require('dotenv').config();
 const IMAGE_BASE_URL = process.env.REACT_APP_API_IMAGE_BASE_URL;
 
 
 const MovieCard = (props) => {
-	const { movie } = props;
+	const savedMovies = useSelector((state) => state.savedMovies);
 	const styles = useStyles();
+	const { movie } = props;
+	let isThisMovieSaved = savedMovies[movie.id];
 
 	return (
 		<ButtonBase style={{textAlign: 'unset'}} component='a'>
@@ -44,12 +49,12 @@ const MovieCard = (props) => {
 							className={cx({
 								[styles.price]: true,
 								[styles.notSaved]: true,
-								[styles.saved]: movie.saved,
+								[styles.saved]: isThisMovieSaved,
 							})}
 							variant='body1'
 							color='inherit'
 						>
-							{movie.saved ? 'Saved' : `Not Saved`}
+							{isThisMovieSaved ? 'Saved' : `Not Saved`}
 						</Typography>
 					</div>
 

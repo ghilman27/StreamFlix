@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { AppBar, Toolbar, Link, IconButton, Typography } from '@material-ui/core';
+import {
+	AppBar,
+	Toolbar,
+	Link,
+	IconButton,
+	Typography,
+} from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 import useStyles from './NavBar.styles';
+import { useSelector } from 'react-redux';
 import cx from 'classnames';
 
 const NavBar = () => {
-	const props = {
-		balance: '100,000'
-	}
+	const userBalance = useSelector((state) => state.userBalance);
 	const [showMenu, setShowMenu] = useState(false);
+	const styles = useStyles();
 
 	const handleScroll = () => {
 		window.pageYOffset ? setShowMenu(true) : setShowMenu(false);
@@ -24,7 +30,6 @@ const NavBar = () => {
 		};
 	}, []);
 
-	const styles = useStyles();
 
 	return (
 		<AppBar
@@ -45,16 +50,16 @@ const NavBar = () => {
 				>
 					StreamFlix
 				</Link>
-				<Typography variant="h5" component="span" className={styles.balance}>
-					Saldo anda Rp {props.balance}
+				<Typography variant='h5' component='span' className={styles.balance}>
+					Saldo anda Rp {userBalance.toLocaleString()}
 				</Typography>
 				<IconButton
-					aria-label="account of current user"
-					aria-controls="menu-appbar"
-					aria-haspopup="true"
-					color="inherit"
+					aria-label='account of current user'
+					aria-controls='menu-appbar'
+					aria-haspopup='true'
+					color='inherit'
 				>
-					<AccountCircle 	className={styles.icon}/>
+					<AccountCircle className={styles.icon} />
 				</IconButton>
 			</Toolbar>
 		</AppBar>

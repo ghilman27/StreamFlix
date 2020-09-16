@@ -5,20 +5,14 @@ import { MovieBanner, MovieCard } from '../../components';
 import { fetchNowPlaying } from '../../api';
 
 
-
 const HomeView = () => {
 	const styles = useStyles();
 	const [movies, setMovies] = useState();
-
-	const fetchMovies = async (page) => {
-		const result = await fetchNowPlaying(page);
-		return result;
-	}
+	const page = 1;
 
 	useEffect(() => {
-		fetchMovies(1).then((movies) => setMovies(movies));
+		fetchNowPlaying(page).then((movies) => setMovies(movies));
 	}, [])
-
 
 	if (!movies) return <div>Loading...</div>;
 	return (

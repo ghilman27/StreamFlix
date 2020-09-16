@@ -1,0 +1,1 @@
+export const REDUCE_BALANCE = 'REDUCE_BALANCE';
