@@ -41,6 +41,9 @@ export default makeStyles((theme) => ({
 		margin: 0,
 		marginTop: theme.spacing(1),
 	},
+	saved: {
+		background: theme.palette.success.main,
+	},
 	price: {
 		display: 'inline-block',
 		marginTop: theme.spacing(1),
@@ -50,6 +53,7 @@ export default makeStyles((theme) => ({
 	genre: {
 		display: 'inline-block',
 		marginLeft: theme.spacing(2),
+		color: theme.palette.text.secondary,
 	},
 	description: {
 		padding: theme.spacing(3),

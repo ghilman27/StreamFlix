@@ -3,6 +3,7 @@ import { Paper, Typography, Box, ButtonBase } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import useStyles from './MovieCard.styles';
 import { textTruncate } from '../../utils/utils';
+import cx from 'classnames';
 
 const MovieCard = (props) => {
 	const { movie } = props;
@@ -30,7 +31,10 @@ const MovieCard = (props) => {
 							/>
 						</Box>
 						<Typography
-							className={styles.price}
+							className={cx({
+								[styles.price]: true,
+								[styles.saved]: movie.saved,
+							})}
 							variant='body1'
 							color='inherit'
 						>
@@ -52,7 +56,6 @@ const MovieCard = (props) => {
 							color='inherit'
 						>
 							{textTruncate(movie.description, 250)}
-							{/* {movie.description} */}
 						</Typography>
 					</div>
 				</div>

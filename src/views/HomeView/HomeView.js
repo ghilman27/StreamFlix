@@ -6,11 +6,13 @@ import { MovieBanner, MovieCard } from '../../components';
 const movie = {
 	title: 'The Avengers',
 	director: 'chris evans',
-	duration: '21,250',
+	price: '21,250',
+	duration: 120,
 	genre: 'Action',
 	description: 'nick fury is compelled to launch the avengers initiative when loki poses a threat to planet earth. his squad of superheroes put their minds together to accomplish the task.',
 	image: 'https://image.tmdb.org/t/p/original/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg',
-	saved: true,
+	saved: false,
+	rating: 7.6,
 }
 
 const movies = [movie, movie, movie, movie, movie, movie];
@@ -21,12 +23,12 @@ const HomeView = () => {
 	return (
 		<Fragment>
 			<MovieBanner 
-				backgroundImage="https://image.tmdb.org/t/p/original/wzJRB4MKi3yK138bJyuL9nx47y6.jpg"
-				height='80vh'
+				movie={movie}
+				height='60vh'
 			/>
 			<Grid container spacing={2} className={styles.movieList}>
 				<Grid item xs={12}>
-					<Typography className={styles.title} variant="h2" color="inherit">
+					<Typography className={styles.title} variant="h2" color="secondary">
 					Now Playing
 					</Typography>
 				</Grid>

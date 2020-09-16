@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavBar, Footer } from './components';
-import { HomeView } from './views';
+import { DetailView, HomeView } from './views';
 import { Paper } from '@material-ui/core';
 
 const App = (props) => {
@@ -8,6 +8,7 @@ const App = (props) => {
 		<Paper>
 			<NavBar />
 			<HomeView />
+			<DetailView />
 			<Footer />
 		</Paper>
 	);
