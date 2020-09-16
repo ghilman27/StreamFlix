@@ -14,7 +14,7 @@ const HomeView = () => {
 
 	const styles = useStyles();
 	const [movies, setMovies] = useState();
-	const [page, setPage] = useState(location.search.split('?page=')[1]);
+	const [page, setPage] = useState(location.search.split('?page=')[1] || 1);
 
 	useEffect(() => {
 		fetchNowPlaying(page).then((movies) => setMovies(movies));
