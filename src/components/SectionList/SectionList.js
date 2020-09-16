@@ -9,6 +9,10 @@ import {
 import useStyles from './SectionList.styles';
 
 
+require('dotenv').config();
+const IMAGE_BASE_URL = process.env.REACT_APP_API_IMAGE_BASE_URL;
+
+
 const SectionList = (props) => {
 	const styles = useStyles(props);
 	const smallScreen = useMediaQuery(theme => theme.breakpoints.down('sm'));
@@ -31,7 +35,7 @@ const SectionList = (props) => {
 				{props.data.map((tile) => (
 					<GridListTile key={tile.id}>
 						<img
-							src={`https://image.tmdb.org/t/p/original${tile.image}`}
+							src={`${IMAGE_BASE_URL}${tile.image}`}
 							alt={tile.title}
 						/>
 						<GridListTileBar title={tile.title} subtitle={tile.subtitle} />

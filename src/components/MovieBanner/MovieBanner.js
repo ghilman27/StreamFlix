@@ -16,18 +16,18 @@ const MovieBanner = (props) => {
 					<header className={styles.movieHeader}>
 					{fullDescription && (
 						<Box mb={3} display="flex" alignItems="center" flexWrap="wrap">
-						{movie.genre.split(',').map((genre, index) => (
+						{movie.genres.map((genre) => (
 							<Typography
-							key={`${genre}-${index}`}
+							key={`${genre.id}`}
 							className={styles.tag}
 							variant="body1"
 							color="inherit">
-							{genre}
+							{genre.name}
 							</Typography>
 						))}
 							<Rating 
 								name="read-only" 
-								value={movie.rating} 
+								value={movie.vote_average} 
 								max={10} 
 								size='small'
 								readOnly 
@@ -38,31 +38,41 @@ const MovieBanner = (props) => {
 						className={styles.movieTitle}
 						variant="h1"
 						color="inherit">
-						{movie.title}
+						{movie.original_title}
 					</Typography>
 					<Typography
 						className={styles.descriptionText}
 						variant="body1"
 						color="inherit">
-						{textTruncate(movie.description, 450)}
+						{textTruncate(movie.overview, 450)}
 					</Typography>
-					<Typography className={styles.director} variant="h4" color="inherit">
-						By: {movie.director}
+					<Typography className={styles.voteCount} variant="h4" color="inherit">
+						{movie.vote_count.toLocaleString()} people liked this
 					</Typography>
 					<Typography
 						className={styles.duration}
 						variant="body1"
 						color="inherit">
-						{movie.duration} min
+						{movie.runtime} min
 					</Typography>
 					<Typography
 						className={cx({
 							[styles.price]: true,
-							[styles.saved]: movie.saved,
 						})}
 						variant="body1"
 						color="inherit">
-						{movie.saved ? 'Saved' : `Rp ${movie.price}`}
+						Rp {movie.price.toLocaleString()},-
+					</Typography>
+					<Typography
+							className={cx({
+								[styles.price]: true,
+								[styles.notSaved]: true,
+								[styles.saved]: movie.saved,
+							})}
+							variant='body1'
+							color='inherit'
+						>
+						{movie.saved ? 'Saved' : `Not Saved`}
 					</Typography>
 					<br/>
 					<Button variant="contained" color="secondary" className={styles.button}>

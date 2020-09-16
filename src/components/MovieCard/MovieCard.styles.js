@@ -41,7 +41,14 @@ export default makeStyles((theme) => ({
 		margin: 0,
 		marginTop: theme.spacing(1),
 	},
+	notSaved: {
+		marginLeft: theme.spacing(1),
+		background: theme.palette.secondary.main,
+		color: theme.palette.secondary.contrastText,
+		fontWeight: theme.typography.fontWeightBold,
+	},
 	saved: {
+		marginLeft: theme.spacing(1),
 		background: theme.palette.success.main,
 	},
 	price: {
@@ -49,11 +56,6 @@ export default makeStyles((theme) => ({
 		marginTop: theme.spacing(1),
 		padding: theme.spacing(1),
 		border: '1px solid rgba(255,255,255,0.13)',
-	},
-	genre: {
-		display: 'inline-block',
-		marginLeft: theme.spacing(2),
-		color: theme.palette.text.secondary,
 	},
 	description: {
 		padding: theme.spacing(3),

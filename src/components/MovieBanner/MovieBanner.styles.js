@@ -1,4 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
+require('dotenv').config();
+const IMAGE_BASE_URL = process.env.REACT_APP_API_IMAGE_BASE_URL;
 
 export default makeStyles((theme) => ({
 	root: (props) => ({
@@ -8,7 +10,7 @@ export default makeStyles((theme) => ({
 				rgba(0,0,0,.9) 25%, 
 				transparent 100%
 			),
-			url("${props.movie.image}")`,
+			url("${IMAGE_BASE_URL}${props.movie.poster_path}")`,
 		height: props.height || '100vh',
 		width: '100%',
 		backgroundPosition: 'center',
@@ -47,7 +49,7 @@ export default makeStyles((theme) => ({
 		fontWeight: 400,
 		textTransform: 'capitalize',
 	},
-	director: {
+	voteCount: {
 		color: '#9ac7fa',
 		fontWeight: '500',
 		fontSize: '16px',
@@ -70,6 +72,12 @@ export default makeStyles((theme) => ({
 		marginLeft: theme.spacing(2),
 		padding: theme.spacing(1),
 		border: '1px solid rgba(255,255,255,0.13)',
+	},
+	notSaved: {
+		marginLeft: theme.spacing(1),
+		background: theme.palette.secondary.main,
+		color: theme.palette.secondary.contrastText,
+		fontWeight: theme.typography.fontWeightBold,
 	},
 	saved: {
 		background: theme.palette.success.main,

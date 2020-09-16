@@ -1,64 +1,42 @@
-import React, { Fragment } from 'react';
-import { Paper, Container } from '@material-ui/core';
-import Rating from '@material-ui/lab/Rating';
+import React, { useState, useEffect } from 'react';
+import { Paper } from '@material-ui/core';
 import useStyles from './DetailView.styles';
 import { MovieBanner, SectionList } from '../../components';
-import castsData from './TestDataCasts';
-import similarData from './TestDataSimilar';
-import recommendationsData from './TestDataRecommendations';
-
-
-const movie = {
-	title: 'The Avengers',
-	director: 'chris evans',
-	price: '21,250',
-	duration: 120,
-	genre: 'Action',
-	description: 'nick fury is compelled to launch the avengers initiative when loki poses a threat to planet earth. his squad of superheroes put their minds together to accomplish the task.',
-	image: 'https://image.tmdb.org/t/p/original/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg',
-	saved: true,
-	rating: 7.6,
-}
+import {
+	fetchMovieDetail,
+	fetchSimilarMovies,
+	fetchRecommendedMovies,
+	fetchMovieCasts,
+} from '../../api';
 
 const DetailView = () => {
+	const id = 24428;
+	const page = 1;
 	const styles = useStyles();
-	const casts = castsData.map(({cast_id, name, character, profile_path}) => ({
-		id: cast_id,
-		title: name,
-		subtitle: character,
-		image: profile_path,
-	}))
-	const similar = similarData.map(({id, title, vote_average, poster_path}) => ({
-		id,
-		title,
-		subtitle: <Rating name="read-only" value={vote_average} max={10} size='small' readOnly style={{fontSize: '0.8215rem'}} />,
-		image: poster_path,
-	}))
-	const recommended = recommendationsData.map(({id, title, vote_average, poster_path}) => ({
-		id,
-		title,
-		subtitle: <Rating name="read-only" value={vote_average} max={10} size='small' readOnly style={{fontSize: '0.8215rem'}} />,
-		image: poster_path,
-	}))
+	const [movie, setMovie] = useState();
+	const [casts, setCasts] = useState();
+	const [similar, setSimilar] = useState();
+	const [recommended, setRecommended] = useState();
+
+	useEffect(() => {
+		fetchMovieDetail(id).then((movie) => setMovie(movie));
+		fetchSimilarMovies(id, page).then((similar) => setSimilar(similar));
+		fetchRecommendedMovies(id, page).then((recommended) =>
+			setRecommended(recommended)
+		);
+		fetchMovieCasts(id).then((casts) => setCasts(casts));
+	}, []);
+
+	if (!movie || !similar || !recommended || !casts) {
+		return <div>Loading .... </div>;
+	}
 
 	return (
 		<Paper className={styles.root}>
-			<MovieBanner movie={movie} height='65vh' fullDescription/>
-			<SectionList 
-				sectionTitle="Top Casts"
-				height={250}
-				data={casts}
-			/>
-			<SectionList 
-				sectionTitle="Similar Movies"
-				height={250}
-				data={similar}
-			/>
-			<SectionList 
-				sectionTitle="Recommended Movies"
-				height={250}
-				data={recommended}
-			/>
+			<MovieBanner movie={movie} height='65vh' fullDescription />
+			<SectionList sectionTitle='Top Casts' height={250} data={casts} />
+			<SectionList sectionTitle='Similar Movies' height={250} data={similar} />
+			<SectionList sectionTitle='Recommended Movies' height={250} data={recommended} />
 		</Paper>
 	);
 };
