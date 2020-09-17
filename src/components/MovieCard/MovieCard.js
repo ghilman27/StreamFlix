@@ -19,7 +19,6 @@ const MovieCard = (props) => {
 	let isThisMovieSaved = savedMovies[movie.id];
 
 	return (
-		<ButtonBase style={{textAlign: 'unset'}}>
 			<Paper className={styles.movieCard} elevation={20}>
 				<div className={styles.infoSection}>
 					<div className={styles.movieHeader}>
@@ -76,7 +75,6 @@ const MovieCard = (props) => {
 					}}
 				/>
 			</Paper>
-		</ButtonBase>
 	);
 };
 

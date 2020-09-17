@@ -11,7 +11,6 @@ import Pagination from '@material-ui/lab/Pagination';
 const HomeView = () => {
 	const location = useLocation();
 	const history = useHistory();
-
 	const styles = useStyles();
 	const [movies, setMovies] = useState();
 	const [page, setPage] = useState(location.search.split('?page=')[1] || 1);
@@ -24,7 +23,7 @@ const HomeView = () => {
 		if (!Number.isNaN(page)) {
 			history.push(`/?page=${page}`)
 			setPage(page)
-			window.scrollTo(0, 0)
+			// window.scrollTo(0, 0)
 		}
 	}
 
@@ -38,20 +37,22 @@ const HomeView = () => {
 			/>
 			<Grid container spacing={2} className={styles.movieList}>
 				<Grid item xs={12}>
-					<Typography className={styles.title} variant="h2" color="secondary">
-					Now Playing
+					<Typography 
+						className={styles.title} 
+						variant="h2" 
+						color="secondary">
+						Now Playing
 					</Typography>
 				</Grid>
 				<Grid
 					container
 					item
 					xs={12}
-					direction="column"
-					alignItems="center"
+					direction="row"
 					justify="center"
 					spacing={2}>
 					{movies.map(movie => (
-					<Grid key={movie.id} item className={styles.fullWidth}>
+					<Grid key={movie.id} item sm={6} md={12} className={styles.fullWidth}>
 						<Link 
 							to={`/${movie.id}-${createSlug(movie.original_title)}`}
 							style={{textDecoration: 'none'}}
@@ -63,7 +64,11 @@ const HomeView = () => {
 				</Grid>
 			</Grid>
 			<div className={styles.pagination}>
-				<Pagination page={parseInt(page)} count={129} color="secondary" onChange={handlePageChange} />
+				<Pagination 
+					page={parseInt(page)} 
+					count={129} 
+					color="secondary" 
+					onChange={handlePageChange} />
 			</div>
 		</Paper>
 	);

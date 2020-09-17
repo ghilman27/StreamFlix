@@ -20,14 +20,13 @@ export default makeStyles((theme) => ({
 		width: '100%',
 		height: '100%',
 		backgroundBlendMode: 'multiply',
-		background: 'linear-gradient(to right, #0d0d0c 50%, transparent 100%)',
+		background: 'linear-gradient(to right, #0d0d0c 55%, transparent 100%)',
 		zIndex: 2,
 		borderRadius: 10,
 	},
 	movieHeader: {
 		position: 'relative',
 		padding: theme.spacing(3),
-		height: '40%',
 		width: '60%',
 	},
 	movieTitle: {
@@ -59,7 +58,6 @@ export default makeStyles((theme) => ({
 	},
 	description: {
 		padding: theme.spacing(3),
-		height: '50%',
 		width: '50%',
 	},
 	descriptionText: {
@@ -77,7 +75,7 @@ export default makeStyles((theme) => ({
 		right: 0,
 		backgroundSize: 'cover !important',
 		borderRadius: 11,
-		width: '80%',
+		width: '45%',
 		backgroundPosition: '-100% 10% !important',
 	},
 
@@ -86,7 +84,7 @@ export default makeStyles((theme) => ({
 		movieCard: {
 			width: '90%',
 			margin: '0 auto',
-			height: 'auto',
+			height: '100%',
 		},
 		blurBackground: {
 			width: '100%',
@@ -95,6 +93,7 @@ export default makeStyles((theme) => ({
 		movieHeader: {
 			width: '100%',
 			marginTop: theme.spacing(3),
+			height: 'auto'
 		},
 		description: {
 			width: '100%',
@@ -104,6 +103,9 @@ export default makeStyles((theme) => ({
 				'linear-gradient(to top, rgb(20, 20, 19) 50%, transparent 100%)',
 			zIndex: 2,
 			borderRadius: 10,
+			display: 'flex',
+			flexDirection: 'column',
+			justifyContent: 'space-around'
 		},
 	},
 }));

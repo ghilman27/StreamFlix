@@ -5,7 +5,6 @@ export default makeStyles((theme) => ({
 		paddingBottom: theme.spacing(24),
 	},
 	movieList: {
-		// marginTop: -theme.spacing(30),
 		paddingTop: theme.spacing(8),
 		paddingBottom: theme.spacing(8),
 		paddingLeft: theme.spacing(4),
@@ -23,6 +22,11 @@ export default makeStyles((theme) => ({
 		display:'flex',
 		flexDirection: 'row',
 		justifyContent: 'center',
+	},
+	fullWidth: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'center'
 	},
 	[theme.breakpoints.down('sm')]: {
 		fullWidth: { width: '100%' }
