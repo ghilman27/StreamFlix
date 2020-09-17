@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	GridList,
 	GridListTile,
@@ -14,11 +14,13 @@ import cx from 'classnames';
 
 require('dotenv').config();
 const IMAGE_BASE_URL = process.env.REACT_APP_API_IMAGE_BASE_URL;
+const IMAGE_PLACEHOLDER = 'https://via.placeholder.com/1000x1500';
 
 
 const SectionList = (props) => {
 	const styles = useStyles(props);
 	const history = useHistory();
+	const [ loaded, setLoaded ] = useState({});
 	const { useLink } = props;
 	const smallScreen = useMediaQuery(theme => theme.breakpoints.down('sm'));
 	const largeScreen = useMediaQuery(theme => theme.breakpoints.up('lg'));
@@ -28,6 +30,13 @@ const SectionList = (props) => {
 			history.push(`/${id}-${createSlug(title)}`)
 			window.scrollTo(0, 0)
 		}
+	}
+
+	const handleImageLoaded = (id) => {
+		setLoaded((prevLoaded) => ({
+			...prevLoaded,
+			[id]: true,
+		}))
 	}
 
 	return (
@@ -53,8 +62,9 @@ const SectionList = (props) => {
 						onClick={() => {handleClick(tile.id, tile.title)}}
 					>
 						<img
-							src={`${IMAGE_BASE_URL}${tile.image}`}
+							src={loaded[tile.id] ? `${IMAGE_BASE_URL}${tile.image}` : IMAGE_PLACEHOLDER}
 							alt={tile.title}
+							onLoad={() => {handleImageLoaded(tile.id)}}
 						/>
 						<GridListTileBar title={tile.title} subtitle={tile.subtitle} />
 					</GridListTile>

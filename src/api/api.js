@@ -57,7 +57,7 @@ export const fetchSimilarMovies = async (id, page) => {
 		const url = `${BASE_URL}/movie/${id}/similar?api_key=${API_KEY}&page${page}`;
 		let { data: { results : movies } } = await axios.get(url);
 
-		movies = movies.slice(MAX_RECOMMENDATION_SIZE);
+		movies = movies.slice(0, MAX_RECOMMENDATION_SIZE);
 
 		return movies.map(({id, title, vote_count, poster_path}) => ({
 			id,
@@ -75,7 +75,7 @@ export const fetchRecommendedMovies = async (id, page) => {
 		const url = `${BASE_URL}/movie/${id}/recommendations?api_key=${API_KEY}&page${page}`;
 		let { data: { results : movies } } = await axios.get(url);
 
-		movies = movies.slice(MAX_RECOMMENDATION_SIZE);
+		movies = movies.slice(0, MAX_RECOMMENDATION_SIZE);
 
 		return movies.map(({id, title, vote_count, poster_path}) => ({
 			id,
@@ -93,7 +93,7 @@ export const fetchMovieCasts = async (id) => {
 		const url = `${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`;
 		let { data: { cast : casts } } = await axios.get(url);
 
-		casts = casts.slice(MAX_RECOMMENDATION_SIZE);
+		casts = casts.slice(0, MAX_RECOMMENDATION_SIZE);
 
 		return casts.map(({cast_id, name, character, profile_path}) => ({
 			id: cast_id,
