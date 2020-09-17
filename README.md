@@ -7,6 +7,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 3. After that, kindly check `env.example` and rename it to `.env` with your api token information
 4. Everything setup! just type `yarn start` to run it in development server!
 
+## The Remote Web
+You can also access this project in this url
+`https://streamflixid.web.app/`
+
 
 
 
