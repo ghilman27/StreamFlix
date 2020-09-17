@@ -39,8 +39,8 @@ const DetailView = (props) => {
 			<MovieBanner movie={movie} height='100vh' fullDescription />
 			<Paper className={styles.sectionContainer}>
 				<SectionList sectionTitle='Top Casts' height={250} data={casts} />
-				<SectionList sectionTitle='Similar Movies' height={250} data={similar} />
-				<SectionList sectionTitle='Recommended Movies' height={250} data={recommended} />
+				<SectionList sectionTitle='Similar Movies' height={250} data={similar} useLink/>
+				<SectionList sectionTitle='Recommended Movies' height={250} data={recommended} useLink/>
 			</Paper>
 		</Paper>
 	);

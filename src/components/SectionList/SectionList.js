@@ -7,6 +7,9 @@ import {
 	useMediaQuery,
 } from '@material-ui/core';
 import useStyles from './SectionList.styles';
+import { useHistory } from 'react-router-dom';
+import { createSlug } from '../../utils/utils';
+import cx from 'classnames';
 
 
 require('dotenv').config();
@@ -15,8 +18,17 @@ const IMAGE_BASE_URL = process.env.REACT_APP_API_IMAGE_BASE_URL;
 
 const SectionList = (props) => {
 	const styles = useStyles(props);
+	const history = useHistory();
+	const { useLink } = props;
 	const smallScreen = useMediaQuery(theme => theme.breakpoints.down('sm'));
 	const largeScreen = useMediaQuery(theme => theme.breakpoints.up('lg'));
+
+	const handleClick = (id, title) => {
+		if (useLink) {
+			history.push(`/${id}-${createSlug(title)}`)
+			window.scrollTo(0, 0)
+		}
+	}
 
 	return (
 		<div className={styles.root}>
@@ -33,7 +45,13 @@ const SectionList = (props) => {
 				cols={smallScreen ? 3.5 : largeScreen ? 8.5 : 5.5}
 			>
 				{props.data.map((tile) => (
-					<GridListTile key={tile.id}>
+					<GridListTile 
+						key={tile.id}
+						className={cx({
+							[styles.listTile]: useLink
+						})}
+						onClick={() => {handleClick(tile.id, tile.title)}}
+					>
 						<img
 							src={`${IMAGE_BASE_URL}${tile.image}`}
 							alt={tile.title}

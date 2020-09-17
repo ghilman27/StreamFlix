@@ -22,4 +22,12 @@ export default makeStyles((theme) => ({
 		paddingTop: theme.spacing(2),
 		paddingBottom: theme.spacing(2)
 	},	
+	listTile: {
+		cursor: 'pointer',
+		transition: 'all 0.4s',
+		'&:hover': {
+			transform: 'scale(1.05)',
+			transition: 'all 0.4s',
+		},
+	}
 }));
