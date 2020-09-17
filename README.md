@@ -1,19 +1,26 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-
-## BEFORE RUNNING THE APP
+## Running the App Locally
 1. Please kindly clone the repo
 2. Then cd to the streamflix app folder and type `yarn install` to install dependencies
 3. After that, kindly check `env.example` and rename it to `.env` with your api token information
 4. Everything setup! just type `yarn start` to run it in development server!
 
-## The Remote Web
+## Running the App Remotely
 You can also access this project in this url
 `https://streamflixid.web.app/`
 
+## Well, How Can I Use It?
+Well, at first, you'll be given Rp 100,000 balance. Just simply explore and click what films you want to buy.
+When the balance run out, you can't buy anything again.
 
-
-
+## Resetting Balance and Saved Movie to the Original State
+Because the data is stored in your browser local storage, you have to delete it in order to reset.
+1. Right click in your browser and click `inspect`
+2. Navigate to `Application` Tab
+3. Navigate to `Clear Storage`
+4. Just click `Clear site data`
+5. We're back to square 1!
 
 ## Available Scripts
 
