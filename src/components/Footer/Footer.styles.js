@@ -8,6 +8,10 @@ export default makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: theme.spacing(16),
-        background: theme.palette.primary.main
+        background: theme.palette.primary.main,
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
     },
 }));

@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 const App = () => {
 	return (
 		<Router>
-			<Paper>
+			<Paper style={{minHeight: '100vh', position:'relative'}}>
 				<NavBar />
 				<Switch>
 					<Route path="/" exact component={HomeView}/>
