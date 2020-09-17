@@ -23,8 +23,6 @@ export default makeStyles((theme) => ({
 		display:'flex',
 		flexDirection: 'row',
 		justifyContent: 'center',
-		paddingTop: theme.spacing(8),
-		paddingBottom: theme.spacing(8),
 	},
 	[theme.breakpoints.down('sm')]: {
 		fullWidth: { width: '100%' }
