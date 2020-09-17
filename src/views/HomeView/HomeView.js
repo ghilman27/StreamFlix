@@ -23,7 +23,7 @@ const HomeView = () => {
 		if (!Number.isNaN(page)) {
 			history.push(`/?page=${page}`)
 			setPage(page)
-			// window.scrollTo(0, 0)
+			window.scrollTo(0, 0)
 		}
 	}
 
