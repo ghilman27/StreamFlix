@@ -12,7 +12,7 @@ const MovieBanner = (props) => {
 	let userBalance = useSelector((state) => state.userBalance);
 	const dispatch = useDispatch();
 	const styles = useStyles(props);
-	const { fullDescription, movie } = props;
+	const { fullDescription, movie, welcomeDescription } = props;
 	let isThisMovieSaved = savedMovies[movie.id];
 
 	const handleBuyMovie = () => {
@@ -32,6 +32,27 @@ const MovieBanner = (props) => {
 
 	return (
 		<Paper className={styles.root}>
+			{welcomeDescription && (
+				<div className={styles.welcomeSection}>
+					<header className={styles.welcomeHeader}>
+						<Typography
+							className={styles.welcomeTitle}
+							variant="h2"
+							component="span"
+							color="inherit">
+							Welcome to Stream Flix
+						</Typography>
+						<Typography
+							className={styles.welcomeSubTitle}
+							variant="h3"
+							component="span"
+							color="inherit">
+							Enjoy our selected movie!
+						</Typography>
+					</header>
+				</div>
+			)
+			}
 			{fullDescription && (
 				<div className={styles.infoSection}>
 					<header className={styles.movieHeader}>

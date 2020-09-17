@@ -33,7 +33,8 @@ const HomeView = () => {
 		<Fragment>
 			<MovieBanner 
 				movie={movies[Math.floor(Math.random() * movies.length)]}
-				height='75vh'
+				height='50vh'
+				welcomeDescription
 			/>
 			<Grid container spacing={2} className={styles.movieList}>
 				<Grid item xs={12}>

@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
 	movieList: {
-		marginTop: -theme.spacing(30),
+		// marginTop: -theme.spacing(30),
 		paddingTop: theme.spacing(8),
 		paddingBottom: theme.spacing(8),
 		paddingLeft: theme.spacing(4),

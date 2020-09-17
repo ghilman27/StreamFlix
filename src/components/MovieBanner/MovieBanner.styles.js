@@ -19,6 +19,17 @@ export default makeStyles((theme) => ({
 		display: 'flex',
 
 	}),
+	welcomeSection: {
+		display: 'flex',
+		alignItems: 'center',
+		width: '100%',
+	},
+	welcomeHeader: {
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		width: '100%'
+	},
 	infoSection: {
 		padding: theme.spacing(3),
 		display: 'flex',
@@ -120,6 +131,12 @@ export default makeStyles((theme) => ({
 		infoSection: {
 			background:
 				'linear-gradient(to right, rgba(0,0,0,.9) 70%, transparent 100%)',
+		},
+		welcomeTitle: {
+			fontSize: '24px',
+		},
+		welcomeSubTitle: {
+			fontSize: '16px',
 		},
 		movieHeader: { maxWidth: '90%' },
 		movieTitle: {
