@@ -1,6 +1,6 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useStyles from './HomeView.styles';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Paper } from '@material-ui/core';
 import { MovieBanner, MovieCard } from '../../components';
 import { fetchNowPlaying } from '../../api';
 import { Link, useLocation, useHistory } from 'react-router-dom';
@@ -30,7 +30,7 @@ const HomeView = () => {
 
 	if (!movies) return <div>Loading...</div>;
 	return (
-		<Fragment>
+		<Paper className={styles.root}>
 			<MovieBanner 
 				movie={movies[Math.floor(Math.random() * movies.length)]}
 				height='50vh'
@@ -65,7 +65,7 @@ const HomeView = () => {
 			<div className={styles.pagination}>
 				<Pagination page={parseInt(page)} count={129} color="secondary" onChange={handlePageChange} />
 			</div>
-		</Fragment>
+		</Paper>
 	);
 };
 
