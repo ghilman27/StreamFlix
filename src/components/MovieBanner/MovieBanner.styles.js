@@ -10,7 +10,7 @@ export default makeStyles((theme) => ({
 				rgba(0,0,0,.9) 25%, 
 				transparent 100%
 			),
-			url("${IMAGE_BASE_URL}${props.movie.poster_path}")`,
+			url("${IMAGE_BASE_URL}${props.movie.backdrop_path}")`,
 		height: props.height || '100vh',
 		width: '100%',
 		backgroundPosition: 'center',
